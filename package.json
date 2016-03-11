@@ -1,0 +1,27 @@
+{
+  "name": "drive-through-till",
+  "version": "0.0.0",
+  "author": "Lochlan McIntosh <info@lochlanmcintosh.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lochlan/drive-through-till"
+  },
+  "bugs": {
+    "url": "https://github.com/Lochlan/drive-through-till/issues"
+  },
+  "engines": {
+    "node": ">= 5.6.0",
+    "npm": ">= 3.0.0"
+  },
+  "dependencies": {
+    "backbone": "1.3.1",
+    "jquery": "2.2.1",
+    "requirejs": "2.1.22",
+    "swig": "1.4.2",
+    "underscore": "1.8.3"
+  },
+  "private": true,
+  "devDependencies": {
+    "http-server": "0.9.0"
+  }
+}
