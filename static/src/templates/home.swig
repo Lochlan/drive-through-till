@@ -3,6 +3,12 @@
 <hr>
 
 <section>
+    <section class="js-alert"></section>
+</section>
+
+<hr>
+
+<section>
     <h2>input</h2>
     <section class="js-order-input"></section>
 </section>

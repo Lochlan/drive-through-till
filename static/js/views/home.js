@@ -1,9 +1,10 @@
 define([
     'backbone',
     'templates/home',
+    'views/alert',
     'views/order-input',
     'views/orders-pending',
-], function (Backbone, homeTpl, OrderInputView, OrdersPendingView) {
+], function (Backbone, homeTpl, AlertView, OrderInputView, OrdersPendingView) {
     'use strict';
 
     var HomeView = Backbone.View.extend({
@@ -11,6 +12,7 @@ define([
 
         views: function () {
             return {
+                alert: new AlertView({el: '.js-alert'}),
                 orderInput: new OrderInputView({el: '.js-order-input'}),
                 ordersPending: new OrdersPendingView({el: '.js-orders-pending'}),
             };
