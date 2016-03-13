@@ -11,5 +11,12 @@
 
 <section>
     <h2>pending orders</h2>
-    <section class="js-orders-pending"></section>
+    <table>
+        <thead>
+            <tr>
+                <th>order items</th>
+            </tr>
+        </thead>
+        <tbody class="js-orders-pending"></tbody>
+    </table>
 </section>

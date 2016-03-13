@@ -1,5 +1,5 @@
-<section>
+<td>
     {% for item in items %}
         {{ item }}
     {% endfor %}
-</section>
+</td>
