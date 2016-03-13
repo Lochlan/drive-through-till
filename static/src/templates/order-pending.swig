@@ -5,4 +5,5 @@
 </td>
 <td>
     <button class="js-complete">complete</button>
+    <button class="js-cancel">cancel</button>
 </td>

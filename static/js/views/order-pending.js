@@ -19,10 +19,15 @@ define([
         },
 
         events: {
+            'click .js-cancel': 'cancelOrder',
             'click .js-complete': 'completeOrder',
         },
 
         completeOrder: function () {
+            this.model.collection.remove(this.model);
+        },
+
+        cancelOrder: function () {
             this.model.collection.remove(this.model);
         },
     });
