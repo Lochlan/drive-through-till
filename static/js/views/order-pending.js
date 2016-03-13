@@ -17,6 +17,14 @@ define([
             this.$el.html(this.template(this.model.attributes));
             return this;
         },
+
+        events: {
+            'click .js-complete': 'completeOrder',
+        },
+
+        completeOrder: function () {
+            this.model.collection.remove(this.model);
+        },
     });
 
     return OrderPendingView;

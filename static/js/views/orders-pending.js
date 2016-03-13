@@ -36,11 +36,22 @@ define([
         },
 
         update: function (collection, options) {
-            if (options.add) {
-                options.changes.added.forEach(function (order) {
+            if (options.changes.added.length > 0) {
+                options.changes.added.forEach(function (addedOrder) {
                     this.views.push(
-                        new OrderPendingView({model: order})
+                        new OrderPendingView({model: addedOrder})
                     );
+                }.bind(this));
+            }
+
+            if (options.changes.removed.length > 0) {
+                options.changes.removed.forEach(function (removedOrder) {
+                    this.views.forEach(function (orderPendingView, index) {
+                        if (orderPendingView.model === removedOrder) {
+                            this.views.splice(index, 1);
+                            orderPendingView.remove();
+                        }
+                    }.bind(this))
                 }.bind(this));
             }
 

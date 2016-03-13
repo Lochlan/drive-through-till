@@ -15,6 +15,7 @@
         <thead>
             <tr>
                 <th>order items</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody class="js-orders-pending"></tbody>
