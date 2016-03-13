@@ -18,6 +18,12 @@ define([
         cancel: function () {
             this.set('items', []);
         },
+
+        validate: function(attrs, options) {
+            if (attrs.items.length === 0) {
+                return 'order must have at least one item';
+            }
+        },
     });
 
     return Order;
