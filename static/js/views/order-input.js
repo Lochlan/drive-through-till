@@ -34,6 +34,9 @@ define([
         },
 
         submitOrder: function () {
+            if (!this.model.isValid()){
+                return;
+            }
             orders.add(this.model);
             this.stopListening();
             this.initialize();
