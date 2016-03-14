@@ -1,7 +1,8 @@
 define([
     'backbone',
+    'models/app-state',
     'templates/order-pending',
-], function (Backbone, orderPendingTpl) {
+], function (Backbone, appState, orderPendingTpl) {
     'use strict';
 
     var OrderPendingView = Backbone.View.extend({
@@ -21,14 +22,19 @@ define([
         events: {
             'click .js-cancel': 'cancelOrder',
             'click .js-complete': 'completeOrder',
+            'click .js-edit': 'editOrder',
         },
 
         completeOrder: function () {
-            this.model.collection.remove(this.model);
+            appState.removeOrder(this.model);
         },
 
         cancelOrder: function () {
-            this.model.collection.remove(this.model);
+            appState.removeOrder(this.model);
+        },
+
+        editOrder: function () {
+            appState.startEditMode(this.model);
         },
     });
 

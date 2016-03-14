@@ -9,6 +9,10 @@
     padding: 10px;
 }
 
+.order-edit-mode {
+    background: #aaa;
+}
+
 .manager-alert {
     border: 1px solid red;
     color: red;

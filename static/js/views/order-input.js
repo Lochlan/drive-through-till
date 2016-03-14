@@ -1,24 +1,34 @@
 define([
     'jquery',
+    'underscore',
     'backbone',
+    'models/app-state',
     'models/order',
-    'collections/orders',
     'templates/order-input',
-], function ($, Backbone, Order, orders, orderInputTpl) {
+], function ($, _, Backbone, appState, Order, orderInputTpl) {
     'use strict';
 
     var OrderInputView = Backbone.View.extend({
         model: undefined,
+        state: undefined,
         template: orderInputTpl,
 
-        initialize: function () {
-            this.model = new Order();
+        initialize: function (options) {
+            options = options || {};
+            this.model = options.model || new Order();
             this.render();
             this.listenTo(this.model, 'change', this.render);
+            this.listenTo(appState, 'change', this.render);
+            this.listenTo(appState, 'edit', this.editOrder);
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.attributes));
+            var templateData = _.extend(
+                {},
+                this.model.attributes,
+                appState.attributes
+            );
+            this.$el.html(this.template(templateData));
             return this;
         },
 
@@ -37,13 +47,23 @@ define([
             if (!this.model.isValid()){
                 return;
             }
-            orders.add(this.model);
+
+            if (appState.get('editing') === true) {
+                appState.stopEditMode();
+            } else {
+                appState.addOrder(this.model);
+            }
             this.stopListening();
             this.initialize();
         },
 
         cancelOrder: function () {
             this.model.cancel();
+        },
+
+        editOrder: function (order) {
+            this.stopListening();
+            this.initialize({model: order});
         },
     });
 
