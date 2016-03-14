@@ -58,7 +58,7 @@ define([
                             this.views.splice(index, 1);
                             childView.remove();
                         }
-                    }.bind(this))
+                    }.bind(this));
                 }.bind(this));
             }
 
