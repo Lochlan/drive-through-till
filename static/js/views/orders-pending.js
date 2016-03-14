@@ -2,14 +2,12 @@ define([
     'underscore',
     'backbone',
     'models/app-state',
-    'templates/order-pending',
     'views/order-pending',
-], function (_, Backbone, appState, orderPendingTpl, OrderPendingView) {
+], function (_, Backbone, appState, OrderPendingView) {
     'use strict';
 
     var OrdersPendingView = Backbone.View.extend({
         collection: appState.orders,
-        template: orderPendingTpl,
         emptyTemplate: _.template('<em>no orders</em>'),
         views: undefined,
 
