@@ -1,10 +1,11 @@
 define([
+    'underscore',
     'backbone',
     'templates/home',
     'views/alert',
     'views/order-input',
     'views/orders-pending',
-], function (Backbone, homeTpl, AlertView, OrderInputView, OrdersPendingView) {
+], function (_, Backbone, homeTpl, AlertView, OrderInputView, OrdersPendingView) {
     'use strict';
 
     var HomeView = Backbone.View.extend({
