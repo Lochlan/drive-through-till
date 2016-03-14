@@ -1,8 +1,9 @@
 define([
+    'underscore',
     'backbone',
     'models/app-state',
     'templates/order-pending',
-], function (Backbone, appState, orderPendingTpl) {
+], function (_, Backbone, appState, orderPendingTpl) {
     'use strict';
 
     var OrderPendingView = Backbone.View.extend({
@@ -12,10 +13,17 @@ define([
 
         initialize: function () {
             this.render();
+            this.listenTo(appState, 'change', this.render);
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.attributes));
+            var templateData = _.extend(
+                {},
+                this.model.attributes,
+                _.result(this, 'templateHelpers'),
+                appState.attributes
+            );
+            this.$el.html(this.template(templateData));
             return this;
         },
 
@@ -35,6 +43,12 @@ define([
 
         editOrder: function () {
             appState.startEditMode(this.model);
+        },
+
+        templateHelpers: function () {
+            return {
+                editingThis: appState.editingOrder === this.model,
+            };
         },
     });
 
