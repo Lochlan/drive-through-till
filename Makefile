@@ -29,6 +29,7 @@ js-templates: $(BUILD_JSTEMPLATES)
 
 js-vendor:\
     static/js/vendor/backbone.js\
+    static/js/vendor/backbone.localstorage.js\
     static/js/vendor/jquery.js\
     static/js/vendor/require.js\
     static/js/vendor/swig.js\
@@ -52,6 +53,9 @@ $(BUILD_JSTEMPLATES_PATH)/%.js: $(SRC_JSTEMPLATES_PATH)/%.swig node_modules
 static/js/vendor/backbone.js: node_modules/backbone/backbone.js node_modules
 	mkdir -p "$(@D)"
 	cp $< $@
+static/js/vendor/backbone.localstorage.js: node_modules/backbone.localstorage/backbone.localStorage.js node_modules
+	mkdir -p "$(@D)"
+	cp $< $@
 static/js/vendor/jquery.js: node_modules/jquery/dist/jquery.js node_modules
 	mkdir -p "$(@D)"
 	cp $< $@
@@ -66,6 +70,7 @@ static/js/vendor/underscore.js: node_modules/underscore/underscore.js node_modul
 	cp $< $@
 
 node_modules/backbone/backbone.js: node_modules
+node_modules/backbone.localstorage/backbone.localStorage.js: node_modules
 node_modules/jquery/dist/jquery.js: node_modules
 node_modules/requirejs/require.js: node_modules
 node_modules/swig/dist/swig.js: node_modules

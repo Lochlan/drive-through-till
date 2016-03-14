@@ -3,6 +3,7 @@ require.config({
 
     paths: {
         'backbone': 'vendor/backbone',
+        'backbone.localstorage': 'vendor/backbone.localstorage',
         'jquery': 'vendor/jquery',
         'swig': 'vendor/swig',
         'underscore': 'vendor/underscore',

@@ -15,6 +15,12 @@ define([
 
         initialize: function () {
             this.views = [];
+            this.collection.forEach(function (order) {
+                this.views.push(
+                    new OrderPendingView({model: order})
+                );
+            }.bind(this));
+
             this.render();
             this.listenTo(this.collection, 'update', this.update);
             this.listenTo(appState, 'change', this.render);

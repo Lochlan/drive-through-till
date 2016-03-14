@@ -49,7 +49,7 @@ define([
             }
 
             if (appState.get('editing') === true) {
-                appState.stopEditMode();
+                appState.stopEditMode(this.model);
             } else {
                 appState.addOrder(this.model);
             }
