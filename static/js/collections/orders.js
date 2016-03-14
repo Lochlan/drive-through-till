@@ -10,5 +10,5 @@ define([
         localStorage: new Backbone.LocalStorage('DriveThroughOrders'),
     });
 
-    return new Orders();
+    return Orders;
 });

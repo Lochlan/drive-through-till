@@ -1,7 +1,7 @@
 define([
     'backbone',
     'collections/orders',
-], function (Backbone, orders) {
+], function (Backbone, Orders) {
     'use strict';
 
     var AppState = Backbone.Model.extend({
@@ -10,9 +10,10 @@ define([
         },
 
         editingOrder: undefined,
-        orders: orders,
+        orders: undefined,
 
         initialize: function () {
+            this.orders = new Orders();
             this.orders.fetch();
         },
 
