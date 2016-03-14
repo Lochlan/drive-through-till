@@ -10,12 +10,14 @@ define([
         collection: appState.orders,
         emptyTemplate: _.template('<em>no orders</em>'),
         views: undefined,
+        ChildView: undefined,
 
         initialize: function () {
+            this.ChildView = OrderPendingView;
             this.views = [];
             this.collection.forEach(function (order) {
                 this.views.push(
-                    new OrderPendingView({model: order})
+                    new this.ChildView({model: order})
                 );
             }.bind(this));
 
@@ -32,9 +34,9 @@ define([
                 return this;
             }
 
-            this.views.forEach(function (orderPendingView) {
-                this.$el.append(orderPendingView.render().el);
-                orderPendingView.setElement(orderPendingView.el);
+            this.views.forEach(function (childView) {
+                this.$el.append(childView.render().el);
+                childView.setElement(childView.el);
             }.bind(this));
 
             return this;
@@ -42,19 +44,19 @@ define([
 
         update: function (collection, options) {
             if (options.changes.added.length > 0) {
-                options.changes.added.forEach(function (addedOrder) {
+                options.changes.added.forEach(function (addedModel) {
                     this.views.push(
-                        new OrderPendingView({model: addedOrder})
+                        new this.ChildView({model: addedModel})
                     );
                 }.bind(this));
             }
 
             if (options.changes.removed.length > 0) {
-                options.changes.removed.forEach(function (removedOrder) {
-                    this.views.forEach(function (orderPendingView, index) {
-                        if (orderPendingView.model === removedOrder) {
+                options.changes.removed.forEach(function (removedModel) {
+                    this.views.forEach(function (childView, index) {
+                        if (childView.model === removedModel) {
                             this.views.splice(index, 1);
-                            orderPendingView.remove();
+                            childView.remove();
                         }
                     }.bind(this))
                 }.bind(this));
