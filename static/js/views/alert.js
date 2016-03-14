@@ -1,12 +1,12 @@
 define([
     'underscore',
     'backbone',
-    'collections/orders',
-], function (_, Backbone, orders) {
+    'models/app-state',
+], function (_, Backbone, appState) {
     'use strict';
 
     var AlertView = Backbone.View.extend({
-        collection: orders,
+        collection: appState.orders,
         template: _.template('<div class="manager-alert">MORE THAN FOUR PENDING ORDERS, ALERT MANAGER</div>'),
         emptyTemplate: _.template('<em>no alerts</em>'),
 
