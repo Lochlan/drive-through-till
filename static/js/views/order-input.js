@@ -10,7 +10,6 @@ define([
 
     var OrderInputView = Backbone.View.extend({
         model: undefined,
-        state: undefined,
         template: orderInputTpl,
 
         initialize: function (options) {
